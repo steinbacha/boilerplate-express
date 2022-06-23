@@ -1,8 +1,16 @@
 const { application } = require('express');
 let express = require('express');
+const req = require('express/lib/request');
 let app = express();
 
 require('dotenv').config();
+
+let loggerResponse = req.method + " " + req.path + " - " + req.ip;
+app.use(function middleware(req, req, next) {
+    console.log(loggerResponse)
+    next();
+});
+
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/index.html');
@@ -19,7 +27,7 @@ app.get('/json', function(req, res) {
     res.json({"message": "Hello json"});}
 });
 
-console.log(process.env.MESSAGE_STYLE)
+
 
 
 
