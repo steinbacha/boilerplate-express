@@ -5,9 +5,9 @@ let app = express();
 
 require('dotenv').config();
 
-let loggerResponse = req.method + " " + req.path + " - " + req.ip;
-app.use(function middleware(req, req, next) {
-    console.log(loggerResponse)
+//let loggerResponse = req.method + " " + req.path + " - " + req.ip;
+app.use(function (req, res, next) {
+    console.log(req.method + " " + req.path + " - " + req.ip)
     next();
 });
 
