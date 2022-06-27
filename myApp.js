@@ -11,7 +11,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/index.html');
 });
