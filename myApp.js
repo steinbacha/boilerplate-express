@@ -6,6 +6,7 @@ let app = express();
 
 require('dotenv').config();
 
+
 app.use(function (req, res, next) {
     console.log(req.method + " " + req.path + " - " + req.ip);
     next();
@@ -26,26 +27,17 @@ app.get('/json', function(req, res) {
     res.json({"message": "Hello json"});}
 });
 
-app.get('/now', (req, res, next) => {
-   req.string = new Date().toString();
-   next();
-}, (req, res) => {
-    res.send(req.string);
+
+const middleware = (req, res, next) => {
+    req.time = new Date().toString();
     next();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
+  };
+  
+  app.get("/now", middleware, (req, res) => {
+    res.send({
+      time: req.time
+    });
+  });
 
 
 
