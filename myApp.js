@@ -27,23 +27,25 @@ app.get('/json', function(req, res) {
     res.json({"message": "Hello json"});}
 });
 
-
-const middleware = (req, res, next) => {
+app.get(
+  "/now",
+  (req, res, next) => {
     req.time = new Date().toString();
     next();
-  };
-  
-  app.get("/now", middleware, (req, res) => {
+  },
+  (req, res) => {
     res.send({
       time: req.time
     });
-  });
+  }
+);
 
-
-
-
-
-
+app.get(
+  "/:word/:echo",
+  (req, res, next) => {
+    res.send({echo: req.params.word});
+  }
+);
 
 
 
