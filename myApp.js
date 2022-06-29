@@ -44,9 +44,14 @@ app.get(
   "/:word/:echo",
   (req, res, next) => {
     res.send({echo: req.params.word});
+    now();
   }
 );
 
+app.get(
+  "/name", (req, res) => {
+    res.json({name: req.query.first + " " + req.query.last});
+  });
 
 
 
